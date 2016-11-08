@@ -1,0 +1,286 @@
+@import "../custom.less";
+@import "~antd/lib/style/themes/default.less";
+@import "~antd/lib/style/core/index.less";
+@import "~antd/lib/style/components.less";
+body{
+  color:rgb(100,100,160);
+  width: 100%;
+}
+.printStyle1{
+  td{
+    border:1px solid;
+  }
+
+  border: 1px solid;
+  border-collapse: collapse;
+  display: table;
+  width: 85mm;
+  height: 37mm;
+
+}
+.miji{
+  width: 70pt;
+  text-align: center;
+  width: 17%;
+  word-wrap: break-word;
+  letter-spacing: 20px;
+  padding: 1pt 4pt;
+}
+
+.testPrint{
+  color:red;
+}
+
+.testmiji{
+  background: #2eddff;
+}
+.main{
+  font-size: 14pt;
+  font-family:"microsoft yahei !important";
+}
+
+.print_item{
+  Icon{
+    float: right;
+  }
+}
+
+//#########################################
+
+.print_item{
+  display: block;
+  border: solid 1px #000000;
+  margin-top: 4mm;
+  margin-right: 2mm;
+  float: left;
+  page-break-after: always !important;
+  page-break-inside: avoid;
+  //display: table;
+
+  h4{
+    margin: 0px;
+    height: 17pt;
+    font-size: 12pt;
+    line-height: 17pt;
+    border-bottom: solid 1pt #000;
+    padding-left:5pt;
+  }
+
+  .secret{
+    height: calc(98%);
+    width: 28pt;
+    word-break: break-all;
+    display: inline-block;
+    //background-color: #267128;
+    //background-color: #005FA6;
+    background-color: white;
+    //color: white;
+    color: black;
+    float: left;
+    border-right: solid 1pt #000;
+    font-size: 18pt;
+    text-align: center;
+    word-break: break-all;
+    padding-top: 17px;
+  }
+
+  .content{
+    height: 100%;
+    float: left;
+    //width: calc(100%- 30pt);
+    width: calc(87%);
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    font-size: 9pt;
+    color: black;
+    p{
+      //width: calc(40% - 1pt);
+      width: calc(40%);
+      margin: 0;
+      padding: 1pt 0;
+      text-align: center;
+      display: inline-block;
+      overflow: hidden;
+      float: left;
+      border-bottom: solid 1pt #000000;
+      border-right: solid 1pt #000;
+    }
+
+    span{
+      width: 60%;
+      display: inline-block;
+      padding:  1pt 0;
+      overflow: hidden;
+      float: left;
+      text-align: center;
+      border-bottom:solid 1pt #000000;
+    }
+
+    p.last,span:last-child{
+      border-bottom-width: 0px;
+      height:23px;
+    }
+
+    span.full_row{
+      width: 100%;
+    }
+  }
+
+}
+
+.size_AW.print_item,.size_N.print_item,.size_PW.print_item{
+
+  .secret{
+    display: none;
+  }
+
+  .content{
+    width: 100%;
+  }
+}
+
+.size_N.print_item {
+  h4{
+    display: none;
+  }
+}
+
+.print_content{
+  display: block;
+  height: calc(100% - 16pt);
+  //height: calc(40%);
+}
+
+.size_JSJ{
+  width: 80mm;
+  height: 35mm;
+}
+.size_TS{
+  width: 80mm;
+  height: 41mm;
+}
+
+.size_AW{
+  width: 65mm;
+  /*height: 25mm;*/
+  height: 30mm;
+}
+
+.size_N{
+  width: 65mm;
+  height: 24mm;
+}
+
+.size_M,.size_K{
+  width: 26mm;
+  height: 11mm;
+  margin-right: 1mm;
+  font-size: 8pt !important;
+}
+.size_M,.size_K{
+  .content{
+    p{
+      font-size: 8pt;
+    }
+    span{
+      font-size: 8pt;
+    }
+  }
+  p.last,span:last-child{
+    border-bottom-width: 0px;
+    height:19px !important;
+  }
+}
+.size_M,.size_K{
+  td{
+    font-size: 8pt !important;
+  }
+}
+
+.size_G{
+  width: 59mm;
+  height: 48mm;
+}
+
+.size_PW{
+  width: 59mm;
+  height: 38mm;
+}
+
+.print_table{
+  td.security_level.level_4{
+    background-color: white;
+    color: black;
+  }
+  td.security_level.level_3{
+    background-color: #005FA6;
+    //background-color: #0000FF;
+    color: white;
+  }
+
+  td.security_level.level_2{
+    background-color: #FFFF00;
+    color: black;
+  }
+
+  td.security_level.level_1{
+    color: white;
+    background-color: #FF0000;
+  }
+
+  table{
+    table{
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+.secret.level_4{
+  background-color: white;
+  color: black;
+}
+.secret.level_3{
+  background-color: #005FA6;
+  //background-color: #0000FF;
+  color: white;
+}
+.secret.level_2{
+  background-color: #FFFF00;
+  color: black;
+}
+.secret.level_1{
+  color: white;
+  background-color: #FF0000;
+}
+
+
+
+.borded{
+  border: solid 1px #000000;
+  width: 100mm;
+  height: 80mm;
+}
+
+.N_level_1{
+  background-color: #FF0000;
+  //background-color: #0000FF;
+  color: white;
+}
+.N_level_2{
+  background-color: #FFFF00;
+  //background-color: #0000FF;
+  color: black;
+}
+.N_level_3{
+  background-color: #005FA6;
+  //background-color: #0000FF;
+  color: white;
+}
+.N_level_4{
+  background-color: white;
+  //background-color: #0000FF;
+  color: black;
+}
+
+
