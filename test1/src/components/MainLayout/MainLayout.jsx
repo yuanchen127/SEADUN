@@ -46,12 +46,6 @@ function MainLayout({ onChange, children, location, handlePrint ,ProductSearchPr
                 <p>外设</p>
               </Tooltip>
             </RadioButton>
-          <RadioButton value="TS">
-            <Tooltip placement="bottom" title={P_text}>
-              <p>TS</p>
-            </Tooltip>
-          </RadioButton>
-
         </RadioGroup>
       </div>
       <Header location={location} handlePrint={handlePrint} ProductSearchProps={ProductSearchProps}/>

@@ -15,26 +15,31 @@ import PrintStyle6 from '../components/PrintStyle6';
 import PrintStyleTS from '../components/PrintStyleTS';
 const RadioButton=Radio.Button;
 const RadioGroup=Radio.Group;
-import Excel from 'excel';
-
 const Products=({location,dispatch,products})=>{
-  const uploadProps={
-    action: 'http://192.168.2.191:8080/JfinalTestDemo/record/readXlsx/',
-    showUploadList:false,
-  };
 
   const {pagination,printStyle,ModalVisible,productSelectedKeys,list,printDevices=[],sblxs,orgs}=products;
   let printDevicesCache = printDevices;
-  // let printDevicesCache = [];
   const printTables=[];
 
+  const uploadProps={
+    action: 'http://192.168.2.191:8080/JfinalTest/record/uploadFile/',
+    showUploadList:false,
+    onChange(info){
+      if (info.file.status !=='uploading') {
+        setTimeout(function () {
+          dispatch({
+            type:'products/excelData',
+          });
+        },5000);
+      }
+    }
+  };
+
   function handleDeletePrintDevice(zch){
-    console.log("handleDeletePrintDevice-printDevices:",printDevices);
     dispatch({
       type:'products/deletePrintDevice',
       payload:zch,
     });
-    console.log("handleDeletePrintDevice-printDevices:",printDevices);
   }
   function changePrintCloseStatus(product){
     if(product.print_close_status == "none"){
@@ -77,7 +82,6 @@ const Products=({location,dispatch,products})=>{
             break;
     }
   }
-  console.log("printTables",printTables);
   function handleDelete(zch) {
     dispatch({
       type:'products/delete',
@@ -125,7 +129,6 @@ const Products=({location,dispatch,products})=>{
         type:'products/updateProductSelectKeys',
         payload:selectedRowKeys,
       });
-      console.log('productSelectedKeys:',products.productSelectedKeys);
     },
   };
   const ProductSearchProps={

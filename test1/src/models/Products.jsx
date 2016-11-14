@@ -1,5 +1,5 @@
 import dva from 'dva';
-import {queryDevices,querySblx,queryOrgs} from '../services/products';
+import {queryDevices,querySblx,queryOrgs,queryExcelData} from '../services/products';
 import {searchByPayload} from '../services/products';
 import {parse} from 'qs';
 
@@ -12,6 +12,7 @@ export default {
     ModalVisible:false,
     printStyle:"J",
     pagination:{pageSize:10},
+    excel:[],
   },
 
   subscriptions: {
@@ -47,7 +48,6 @@ export default {
 
     *search({payload},{call,put}) {
       console.log('开始进行搜索------');
-      // console.log('search--printdevices:',printDevices);
       const {data} = yield call(searchByPayload,parse(payload));
       if(data){
         yield put({
@@ -57,18 +57,38 @@ export default {
           },
         });
       }
-
+    },
+    *excelData({payload},{call,put}) {
+      const {data} = yield call(queryExcelData,parse(payload));
+      if(data){
+        yield put({
+          type:'handleExcelToPrintDevice',
+          payload:{
+            excel:data,
+          },
+        });
+      }
     }
   },
   reducers: {
+    handleExcelToPrintDevice(state,action){
+      if(action.payload.excel){
+        for(let i=0;i<action.payload.excel.length;i++){
+          action.payload.excel[i].print_close_status="none";
+          action.payload.excel[i].printStyle="TS";
+          action.payload.excel[i].key=action.payload.excel[i].zch;
+          action.payload.excel[i].sbmjcode=1;
+          state.printDevices.push(action.payload.excel[i]);
+        }
+      }
+      console.log('see-excel-stat:',state);
+    return {...state};
+    },
     showLoading(state) {
       return { ...state, loading: true };
     },
     querySuccess(state,action) {
-      console.log('querysuccess-state-start:',state);
-      state = { ...state, ...action.payload, loading: false ,ModalVisible:true};
-      console.log('querysuccess-state-end:',state);
-      return state;
+      return { ...state, ...action.payload, loading: false ,ModalVisible:true};
     },
     'delete'(state,{payload: zch}){
       return {...state,list:state.list.filter(item => item.zch !== zch)};
@@ -101,3 +121,4 @@ export default {
     },
   },
 };
+

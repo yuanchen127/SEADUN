@@ -4,19 +4,16 @@ import {Icon} from 'antd';
 
 //计算机设备
 const PrintStyle1=({changePrintCloseStatus,handleClick,product})=> {
-  const {sbmjcode,sbmjname="公开",orgname="orgname",zch="zch",personname="personname",csblxname="sblxname",sbytname="sbytname",print_close_status="none"} = product;
+  const {sbmj="",zch="zch",fgbm=" ",zrbm="",zrr=" ",sbyt="",print_close_status="none"} = product;
   let div_sbmj;
-  // if(sbmjcode==3){
-  //   div_sbmj = <div className={`${styles.secret} ${styles.level_3}`}>{sbmjname}</div>;
-  // }
-  switch (sbmjcode){
-    case "1":
+  switch (sbmj){
+    case "机密":
       div_sbmj =`${styles.secret} ${styles.level_1}`;
       break;
-    case "2":
+    case "秘密":
       div_sbmj = `${styles.secret} ${styles.level_2}`;
       break;
-    case "3":
+    case "内部":
       div_sbmj =`${styles.secret} ${styles.level_3}`;
       break;
     default:
@@ -32,17 +29,17 @@ const PrintStyle1=({changePrintCloseStatus,handleClick,product})=> {
         <h4>中航工业成飞</h4>
         <div className={`${styles.secret}`} style={{"font-size":"15px","padding":"0px 5px 0px 5px","background-color":"#02a724","height":"101%"}}>特殊设备信息</div>
         <div className={styles.content}>
-          <p>责任部门</p>
-          <span>{orgname}</span>
           <p>统一编号</p>
           <span>{zch}</span>
+          <p>分管部门</p>
+          <span>{fgbm}</span>
+          <p>责任部门</p>
+          <span>{zrbm}</span>
           <p>责任人</p>
-          <span>{personname}</span>
-          <p>设备类型</p>
-          <span>{csblxname}</span>
+          <span>{zrr}</span>
           <p>用途</p>
-          <span>{sbytname}</span>
-          <p className={div_sbmj} style={{"width":"100%","border":"0pt","height":"22px","font-size":"17px"}}>{sbmjname}</p>
+          <span>{sbyt}</span>
+          <p className={div_sbmj} style={{"width":"100%","border":"0pt","height":"22px","font-size":"17px"}}>{sbmj}</p>
         </div>
       </div>
     </div>
